@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "deuxmille", "deuxmille\deuxmille.fsproj", "{9B0DC6C9-450B-4E90-9776-918E5C2BAFDC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Grid", "Grid\Grid.fsproj", "{4B1E7B8E-DF6A-46BD-ADA9-CE6ECF0642A1}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://bv.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = deuxmille\\deuxmille.fsproj
+		SccProjectName1 = deuxmille
+		SccLocalPath1 = deuxmille
+		SccProjectUniqueName2 = Grid\\Grid.fsproj
+		SccProjectName2 = Grid
+		SccLocalPath2 = Grid
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B0DC6C9-450B-4E90-9776-918E5C2BAFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0DC6C9-450B-4E90-9776-918E5C2BAFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0DC6C9-450B-4E90-9776-918E5C2BAFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B0DC6C9-450B-4E90-9776-918E5C2BAFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B1E7B8E-DF6A-46BD-ADA9-CE6ECF0642A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B1E7B8E-DF6A-46BD-ADA9-CE6ECF0642A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B1E7B8E-DF6A-46BD-ADA9-CE6ECF0642A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B1E7B8E-DF6A-46BD-ADA9-CE6ECF0642A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
