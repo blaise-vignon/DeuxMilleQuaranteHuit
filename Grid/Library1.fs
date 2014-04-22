@@ -2,7 +2,7 @@
 
 
     type direction = Up | Down  | Left  | Right 
-    //type direction = Up | Down  | Right 
+    //type direction = Up | Down  | Right
 
     let printgrid (d:int[,]) =
         for i in [0..3] do
@@ -178,14 +178,14 @@
     let pick ls =
         let n = List.length ls
         List.nth ls (rnd.Next(n-1))
-
-    let rndnew = 
-        if rnd.Next(0,9) = 9 then 4 else 2
+        
+    let rndnew = fun _ ->  if rnd.Next(0,9) = 0 then 4 else 2
+    //let rndnew = if rnd.Next(0,9) = 0 then 4 else 2
         
 
     let newtile grid = 
         let (m, n) = grid |> findZeroes |> pick in
-            Array2D.set grid m n rndnew
+            Array2D.set grid m n (rndnew ())
 
     let create = 
         let grid = Array2D.create 4 4 0 
