@@ -137,34 +137,34 @@
         let empties =  grid |> findZeroes |> List.length
         let baseScore = grid |> makeList |> List.mapi (fun i x -> i*i*x*x) |> List.sum
         let mutable score = baseScore
-        let mutable maxbn = true
-
-        for i in [0..3] do
-            for j in [0..3] do
-                if ((Array2D.get grid i j) > (Array2D.get grid 3 3)) then maxbn <- false
-        
-        if maxbn then score <- score + 100 * (Array2D.get grid 3 3) * (Array2D.get grid 3 3)
-        
+//        let mutable maxbn = true
+//
+//        for i in [0..3] do
+//            for j in [0..3] do
+//                if ((Array2D.get grid i j) > (Array2D.get grid 3 3)) then maxbn <- false
+//        
+//        if maxbn then score <- score + 100 * (Array2D.get grid 3 3) * (Array2D.get grid 3 3)
+//        
         for i in [0..3] do
             let mutable maxrel = true
             for j in [0..2] do
                 if ((Array2D.get grid i j) > (Array2D.get grid i 3)) then maxrel <- false
-            if maxrel then score <- score + 30 * (Array2D.get grid i 3) * (Array2D.get grid i 3)
-
-        for i in [3..1] do
-            for j in [3] do
-                match (Array2D.get grid i j) >= (Array2D.get grid (i-1) j)  with
-                    | true  -> score <- score + 2 * (Array2D.get grid i j)
-                    | false  -> score <- score - 2 * (Array2D.get grid (i-1) j)
-            for j in [2] do
-                match (Array2D.get grid i j) <= (Array2D.get grid (i-1) j)  with
-                    | true  -> score <- score + 2 * (Array2D.get grid i j)
-                    | false  -> score <- score - 2 * (Array2D.get grid (i-1) j)
+            if maxrel then score <- score + 100 * (Array2D.get grid 3 3) * (Array2D.get grid 3 3)
+//
+//        for i in [3..1] do
+//            for j in [3] do
+//                match (Array2D.get grid i j) >= (Array2D.get grid (i-1) j)  with
+//                    | true  -> score <- score + 2 * (Array2D.get grid i j)
+//                    | false  -> score <- score - 2 * (Array2D.get grid (i-1) j)
+//            for j in [2] do
+//                match (Array2D.get grid i j) <= (Array2D.get grid (i-1) j)  with
+//                    | true  -> score <- score + 2 * (Array2D.get grid i j)
+//                    | false  -> score <- score - 2 * (Array2D.get grid (i-1) j)
         score
 
 //    let test = Array2D.init 4 4 (fun i j -> if (j > 1) then 2048 else 0)
 //    printgrid test
-//    scoregrid test
+
 //
 
     let isLost g = 
