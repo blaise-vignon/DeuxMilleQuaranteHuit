@@ -127,16 +127,16 @@
                     m <- i
                     n <- j
         (m,n)
-
+    let sqr n = n * n |> float
     let scoregrid grid = 
         let empties =  grid |> findZeroes |> List.length
-        let baseScore = grid |> makeList |> List.mapi (fun i x -> i*i*x*x) |> List.sum
+        let baseScore = grid |> makeList |> List.mapi (fun i x -> (sqr i)* (sqr x)) |> List.sum
         let mutable score = baseScore       
         for i in [0..3] do
             let mutable maxrel = true
             for j in [0..2] do
-                if ((Array2D.get grid i j) > (Array2D.get grid i 3)) then maxrel <- false
-            if maxrel then score <- score + 100 * (Array2D.get grid 3 3) * (Array2D.get grid 3 3)
+                if grid.[i,j] > grid.[i,3] then maxrel <- false
+            if maxrel then score <- score + 100.0 * (sqr grid.[3,3] )
 
         score
 
@@ -190,7 +190,7 @@
             
             let score2 = enumeratenext grid 2 |> List.map genPoss|> List.map (scoreList (n-1) ) |> avg
             let score4 = enumeratenext grid 4 |> List.map genPoss|> List.map (scoreList (n-1) ) |> avg
-            let scoreRes = (float score2) * 0.9 + (float score2) * 0.1
+            let scoreRes = score2 * 0.9 + score4 * 0.1
             scoreRes
 
 
@@ -202,7 +202,7 @@
             let mutable scoreList = []
             for (dir, grid) in possibilities do
                 match grid |> findZeroes |> List.length with
-                | n when n > 10 -> scoreList <- (dir,score 0 grid) :: scoreList
+                | n when n > 10 -> scoreList <- (dir,score 1 grid) :: scoreList
                 | n when n > 6 -> scoreList <- (dir,score 1 grid) :: scoreList
                 | n when n > 3 -> scoreList <- (dir,score 2 grid) :: scoreList
                 | _ -> scoreList <- (dir,score 3 grid) :: scoreList
