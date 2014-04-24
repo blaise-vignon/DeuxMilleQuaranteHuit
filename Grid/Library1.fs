@@ -117,26 +117,18 @@
 
 
     let dirArray = [| Left  ; Right ; Up ; Down  ;|]
-    //let dirArray = [|  Right ; Up ; Down  ;|]
 
-    let maxmn grid = 
-        let mutable (m,n) = (0,0)
-        for i in [0..3] do
-            for j in [0..3] do
-                if (Array2D.get grid i j ) >= (Array2D.get grid m n) then 
-                    m <- i
-                    n <- j
-        (m,n)
     let sqr n = n * n |> float
+
     let scoregrid grid = 
         let empties =  grid |> findZeroes |> List.length
-        let baseScore = grid |> makeList |> List.mapi (fun i x -> (sqr i)* (sqr x)) |> List.sum
+        let baseScore = grid |> makeList |> List.mapi (fun i x -> (sqr i)*(sqr i)* (sqr x)) |> List.sum
         let mutable score = baseScore       
         for i in [0..3] do
             let mutable maxrel = true
             for j in [0..2] do
                 if grid.[i,j] > grid.[i,3] then maxrel <- false
-            if maxrel then score <- score + 100.0 * (sqr grid.[3,3] )
+            if maxrel then score <- score + 100.0 * (min (sqr grid.[3,3] ) 1024.0 * 1024.0) 
 
         score
 
@@ -202,10 +194,11 @@
             let mutable scoreList = []
             for (dir, grid) in possibilities do
                 match grid |> findZeroes |> List.length with
-                | n when n > 10 -> scoreList <- (dir,score 1 grid) :: scoreList
+                | n when n > 9 -> scoreList <- (dir,score 0 grid) :: scoreList
                 | n when n > 6 -> scoreList <- (dir,score 1 grid) :: scoreList
                 | n when n > 3 -> scoreList <- (dir,score 2 grid) :: scoreList
-                | _ -> scoreList <- (dir,score 3 grid) :: scoreList
+                | n when n > 1 -> scoreList <- (dir,score 3 grid) :: scoreList
+                | _ -> scoreList <- (dir,score 4 grid) :: scoreList
 
             let elimLeft (d,s) = if (d=Left) then (d,s-1000.0) else (d,s)
             let bestdir = scoreList |> List.map elimLeft |> List.maxBy snd |> fst
