@@ -193,12 +193,22 @@
                                     if aw then  yield (d,gout)] 
             let mutable scoreList = []
             for (dir, grid) in possibilities do
-                match grid |> findZeroes |> List.length with
-                | n when n > 9 -> scoreList <- (dir,score 0 grid) :: scoreList
-                | n when n > 6 -> scoreList <- (dir,score 1 grid) :: scoreList
-                | n when n > 3 -> scoreList <- (dir,score 2 grid) :: scoreList
-                | n when n > 1 -> scoreList <- (dir,score 3 grid) :: scoreList
-                | _ -> scoreList <- (dir,score 4 grid) :: scoreList
+                //if grid.[3,3]<= 2048 then
+                if true then
+                    match grid |> findZeroes |> List.length with
+                    | n when n > 11 -> scoreList <- (dir,score 0 grid) :: scoreList
+                    | n when n > 8 -> scoreList <- (dir,score 1 grid) :: scoreList
+                    | n when n > 5 -> scoreList <- (dir,score 2 grid) :: scoreList
+                    | n when n > 3 -> scoreList <- (dir,score 3 grid) :: scoreList
+                    | _ -> scoreList <- (dir,score 4 grid) :: scoreList
+
+                else
+                    match grid |> findZeroes |> List.length with
+                    | n when n > 9 -> scoreList <- (dir,score 1 grid) :: scoreList
+                    | n when n > 6 -> scoreList <- (dir,score 2 grid) :: scoreList
+                    | n when n > 3 -> scoreList <- (dir,score 3 grid) :: scoreList
+                    | n when n > 1 -> scoreList <- (dir,score 4 grid) :: scoreList
+                    | _ -> scoreList <- (dir,score 5 grid) :: scoreList
 
             let elimLeft (d,s) = if (d=Left) then (d,s-1000.0) else (d,s)
             let bestdir = scoreList |> List.map elimLeft |> List.maxBy snd |> fst
